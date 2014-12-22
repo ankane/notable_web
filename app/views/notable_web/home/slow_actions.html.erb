@@ -1,0 +1,26 @@
+<%= line_chart @total_time_by_day %>
+
+<h4>Last 3 Days</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 40%;">Action</th>
+      <th style="width: 15%;">Total Time (min)</th>
+      <th style="width: 15%;">Average Time (sec)</th>
+      <th style="width: 15%;">Requests</th>
+      <th style="width: 15%;">Timeouts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @top_actions.each do |action| %>
+      <tr>
+        <td><%= link_to action.action, slow_action_path(action_name: action.action) %></td>
+        <td><%= (action.total_time / 60.0).round %></td>
+        <td><%= action.average_time.round(1) %></td>
+        <td><%= action.requests %></td>
+        <td><%= action.timeouts %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

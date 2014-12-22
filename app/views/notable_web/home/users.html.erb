@@ -1,0 +1,7 @@
+<% @users.each do |user, requests| %>
+  <% next if !user %>
+  <% requests = requests.sort_by(&:created_at).reverse.first(5) %>
+  <h3><%= NotableWeb.user_name_method.call(user) %></h3>
+  <%= render partial: "stream", locals: {requests: requests, show_user: false} %>
+  <p style="margin-bottom: 40px;"><%= link_to "more", root_path(user_id: user.id, user_type: user.class.name) %></p>
+<% end %>

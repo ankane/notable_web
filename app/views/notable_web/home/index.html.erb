@@ -1,0 +1,38 @@
+<% if (params[:note_type] == "Validation Errors" or params[:note_type] == "Error") && !params[:action_name] %>
+  <h3>Top</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Errors</th>
+        <th style="width: 15%; text-align: right;">Users</th>
+        <th style="width: 15%; text-align: right;">Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Notable::Request.select("note, action, COUNT(DISTINCT (user_type || user_id)) as count_user, COUNT(*) as count_all").where(note_type: params[:note_type]).group([:note, :action]).order("count_all desc").each do |agg| %>
+        <tr>
+          <td>
+            <%= agg.note %> <span style="color: #999;"><%= agg.action %></span>
+            <%= link_to "view", params.merge(note: agg.note, action_name: agg.action) %>
+          </td>
+          <td style="text-align: right;"><%= agg.count_user %></td>
+          <td style="text-align: right;"><%= agg.count_all %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% if params[:user_type] and params[:user_id] %>
+  <h3><%= params[:user_type] %> <%= params[:user_id] %></h3>
+<% end %>
+
+<%= render partial: "stream", locals: {requests: @requests, show_user: !(params[:user_id] && params[:user_type])} %>
+
+<% if @requests.current_page != 1 %>
+  <%= link_to "Prev", params.merge(page: @requests.current_page - 1), style: "margin-right: 20px;" %>
+<% end %>
+<% if @requests.size == @requests.limit_value %>
+  <%= link_to "Next", params.merge(page: @requests.current_page + 1) %>
+<% end %>
