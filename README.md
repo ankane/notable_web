@@ -35,6 +35,11 @@ authenticate :user, lambda {|user| user.admin? } do
 end
 ```
 
+## TODO
+
+- demo
+- better design
+
 ## Contributing
 
 Everyone is encouraged to help improve this project. Here are a few ways you can help:
