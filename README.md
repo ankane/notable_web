@@ -2,7 +2,7 @@
 
 A web interface for [Notable](https://github.com/ankane/notable)
 
-:construction: Screenshot and demo coming soon
+Screenshot, demo, and better UI coming soon
 
 ## Installation
 
