@@ -37,14 +37,17 @@ authenticate :user, lambda {|user| user.admin? } do
 end
 ```
 
-#### WillPaginate
-If you use will_paginate then you will need to configure an initializer for Kaminari to avoid conflicts. Put this in `config/initializers/kaminari.rb`
+#### will_paginate
+
+If using will_paginate, create an initializer `config/initializers/kaminari.rb` with:
 
 ```ruby
 Kaminari.configure do |config|
   config.page_method_name = :per_page_kaminari
 end
 ```
+
+to avoid conflicts.
 
 ## TODO
 
