@@ -7,8 +7,10 @@ module NotableWeb
     def index
       where = Hash[ params.slice(:status, :note_type, :note, :user_id, :user_type).permit!.map{|k,v| ["notable_requests.#{k}", v] } ]
 
+      page_method_name = Kaminari.config.page_method_name
+
       # https://github.com/rails/rails/issues/9055
-      @requests = Notable::Request.order("notable_requests.id DESC").where(where).preload(:user).page(params[:page]).per(100)
+      @requests = Notable::Request.order("notable_requests.id DESC").where(where).preload(:user).public_send(page_method_name, params[:page]).per(100)
 
       if params[:action_name]
         @requests = @requests.where(action: params[:action_name])
