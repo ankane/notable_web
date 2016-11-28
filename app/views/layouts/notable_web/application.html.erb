@@ -5,101 +5,32 @@
 
     <meta charset="utf-8" />
 
-    <style>
-      body {
-        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-        margin: 0;
-        padding: 20px;
-        font-size: 14px;
-        line-height: 1.4;
-        color: #333;
-      }
-
-      a, a:visited, a:active {
-        color: #428bca;
-        text-decoration: none;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-        margin-bottom: 20px;
-      }
-
-      th {
-        text-align: left;
-        border-bottom: solid 2px #ddd;
-      }
-
-      table td, table th {
-        padding: 8px;
-      }
-
-      td {
-        border-top: solid 1px #ddd;
-      }
-
-      .nav li {
-        display: inline;
-        margin-right: 20px;
-      }
-
-      ul {
-        padding-left: 0;
-      }
-
-      .stream li {
-        display: block;
-        border-top: solid 1px #eee;
-      }
-
-      .more {
-        display: none;
-        padding-bottom: 1em;
-      }
-    </style>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+	<%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'notable' %>
   </head>
   <body>
-    <div class="container">
-      <ul class="nav">
-        <li><%= link_to "Stream", root_path %></li>
-        <li><%= link_to "Slow Requests", root_path(scope: "slow_requests") %></li>
-        <li><%= link_to "Timeouts", root_path(note_type: "Timeout") %></li>
-        <li><%= link_to "Not Found", root_path(note_type: "Not Found") %></li>
-        <li><%= link_to "Errors", root_path(note_type: "Error") %></li>
-        <li><%= link_to "Validation Errors", root_path(note_type: "Validation Errors") %></li>
-        <li><%= link_to "Unpermitted Parameters", root_path(note_type: "Unpermitted Parameters") %></li>
-        <li><%= link_to "Unverified Request", root_path(note_type: "Unverified Request") %></li>
-      </ul>
-      <ul class="nav">
-        <li><%= link_to "Users", users_path %></li>
-        <li><%= link_to "Slow Actions", slow_actions_path %></li>
-      </ul>
-      <form method="get" action="<%= root_path %>">
-        <!-- <%= select_tag :user_type, options_for_select([["User", "User"]]) %> -->
-        User
-        <%= hidden_field_tag :user_type, "User" %>
-        <%= text_field_tag :user_id %>
-        <input type="submit" value="Go" />
-      </form>
-      <%= yield %>
-    </div>
-
-    <script>
-      $(".stream li").click( function(e) {
-        if (e.target.tagName != "A") {
-          e.preventDefault();
-          $(this).find(".more").slideToggle();
-        }
-      });
-    </script>
+	  <nav class="navbar navbar-default">
+		<div class="container-fluid">
+		  <ul class="nav navbar-nav">
+			<li><%= link_to "Stream", root_path %></li>
+			<li><%= link_to "Slow Requests", root_path(scope: "slow_requests") %></li>
+			<li><%= link_to "Timeouts", root_path(note_type: "Timeout") %></li>
+			<li><%= link_to "Not Found", root_path(note_type: "Not Found") %></li>
+			<li><%= link_to "Errors", root_path(note_type: "Error") %></li>
+			<li><%= link_to "Validation Errors", root_path(note_type: "Validation Errors") %></li>
+			<li><%= link_to "Unpermitted Parameters", root_path(note_type: "Unpermitted Parameters") %></li>
+			<li><%= link_to "Unverified Request", root_path(note_type: "Unverified Request") %></li>
+			<li><%= link_to "Users", users_path %></li>
+			<li><%= link_to "Slow Actions", slow_actions_path %></li>
+		  </ul>
+		  <form class="navbar-form" method="get" action="<%= root_path %>">
+			<!-- <%= select_tag :user_type, options_for_select([["User", "User"]]) %> -->
+			<%= hidden_field_tag :user_type, "User" %>
+			<%= text_field_tag :user_id, nil, class: "form-control", placeholder: 'User' %>
+			<input class="form-control" type="submit" value="Go" />
+		  </form>
+		  <%= yield %>
+	  </div>
+	</nav>
   </body>
 </html>

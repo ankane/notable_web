@@ -1,0 +1,64 @@
+/*
+ *
+ */
+body {
+font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+margin: 0;
+padding: 20px;
+font-size: 14px;
+line-height: 1.4;
+color: #333;
+}
+
+a, a:visited, a:active {
+color: #428bca;
+text-decoration: none;
+}
+
+a:hover {
+text-decoration: underline;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+border-spacing: 0;
+margin-bottom: 20px;
+}
+
+th {
+text-align: left;
+border-bottom: solid 2px #ddd;
+}
+
+table td, table th {
+padding: 8px;
+}
+
+td {
+border-top: solid 1px #ddd;
+}
+
+.nav li {
+display: inline;
+margin-right: 20px;
+}
+
+ul {
+padding-left: 0;
+}
+
+.list-unstyled li {
+display: block;
+border-top: solid 1px #eee;
+}
+
+.hidden {
+display: none;
+padding-bottom: 1em;
+}
+
+.show {
+display: block;
+padding-bottom: 1em;
+}
