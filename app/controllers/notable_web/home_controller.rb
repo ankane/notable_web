@@ -2,6 +2,8 @@ module NotableWeb
   class HomeController < ActionController::Base
     layout "notable_web/application"
 
+    protect_from_forgery with: :exception
+
     http_basic_authenticate_with name: ENV["NOTABLE_USERNAME"], password: ENV["NOTABLE_PASSWORD"] if ENV["NOTABLE_PASSWORD"]
 
     def index
