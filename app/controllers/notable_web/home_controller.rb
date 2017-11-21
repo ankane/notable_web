@@ -5,7 +5,8 @@ module NotableWeb
     http_basic_authenticate_with name: ENV["NOTABLE_USERNAME"], password: ENV["NOTABLE_PASSWORD"] if ENV["NOTABLE_PASSWORD"]
 
     def index
-      where = Hash[ params.slice(:status, :note_type, :note, :user_id, :user_type).permit!.map{|k,v| ["notable_requests.#{k}", v] } ]
+      where = params.slice(:status, :note_type, :note, :user_id, :user_type).permit!.to_h
+      where = {notable_requests: where} if where.any?
 
       page_method_name = Kaminari.config.page_method_name
 
