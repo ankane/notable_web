@@ -1,4 +1,4 @@
-<ul class="stream">
+<ul class="list-unstyled">
   <% requests.each do |request| %>
     <li>
       <p>
@@ -18,7 +18,7 @@
         <% end %>
       </p>
 
-      <div class="more">
+      <div class="hidden">
         <%= link_to nil, request.url, target: "_blank" %><br />
         <% if request.referrer.present? %>
           from <%= link_to nil, request.referrer, target: "_blank" %><br />
