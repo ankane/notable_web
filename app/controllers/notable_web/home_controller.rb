@@ -49,7 +49,7 @@ module NotableWeb
         break if user_ids.size >= 20
       end
       groups = user_ids.group_by{|v| v[1] }
-      where = [groups.map{|_, v| "(user_type = ? AND user_id IN (?))" }.join(" OR ")] + groups.flat_map{|v| [v[0], v[1].map{|v1| v1[0] }] }
+      where = [groups.map{|_, _v| "(user_type = ? AND user_id IN (?))" }.join(" OR ")] + groups.flat_map{|v| [v[0], v[1].map{|v1| v1[0] }] }
       @users = requests.includes(:user).where(where).order("created_at DESC").group_by(&:user)
     end
 
