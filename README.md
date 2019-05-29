@@ -2,8 +2,6 @@
 
 A web interface for [Notable](https://github.com/ankane/notable)
 
-Screenshot, demo, and better UI coming soon
-
 ## Installation
 
 Add this line to your application’s Gemfile:
