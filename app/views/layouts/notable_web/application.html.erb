@@ -64,8 +64,7 @@
       }
     </style>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+    <%= javascript_include_tag "notable_web" %>
   </head>
   <body>
     <div class="container">
@@ -94,12 +93,17 @@
     </div>
 
     <script>
-      $(".stream li").click( function(e) {
-        if (e.target.tagName != "A") {
-          e.preventDefault();
-          $(this).find(".more").slideToggle();
-        }
-      });
+      var nodes = document.querySelectorAll(".stream li")
+      for (var i = 0; i < nodes.length; i++) {
+        nodes[i].addEventListener("click", function(e) {
+          if (e.target.tagName != "A") {
+            e.preventDefault()
+            var more = e.currentTarget.querySelector(".more")
+            var display = more.style.display == "block" ? "none" : "block"
+            more.style.display = display
+          }
+        })
+      }
     </script>
   </body>
 </html>
