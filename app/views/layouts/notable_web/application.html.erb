@@ -97,7 +97,6 @@
       for (var i = 0; i < nodes.length; i++) {
         nodes[i].addEventListener("click", function(e) {
           if (e.target.tagName != "A") {
-            e.preventDefault()
             var more = e.currentTarget.querySelector(".more")
             var display = more.style.display == "block" ? "none" : "block"
             more.style.display = display
