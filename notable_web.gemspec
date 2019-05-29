@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "railties", ">= 5"
   spec.add_dependency "notable"
   spec.add_dependency "groupdate"
-  spec.add_dependency "chartkick"
+  spec.add_dependency "chartkick", ">= 2"
   spec.add_dependency "kaminari"
   spec.add_dependency "public_suffix"
 
