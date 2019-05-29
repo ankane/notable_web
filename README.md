@@ -30,7 +30,7 @@ ENV["NOTABLE_PASSWORD"] = "secret"
 #### Devise
 
 ```ruby
-authenticate :user, lambda {|user| user.admin? } do
+authenticate :user, ->(user) { user.admin? } do
   mount NotableWeb::Engine, at: "notable"
 end
 ```
@@ -46,11 +46,6 @@ end
 ```
 
 to avoid conflicts.
-
-## TODO
-
-- demo
-- better design
 
 ## Contributing
 
