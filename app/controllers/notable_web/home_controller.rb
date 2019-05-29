@@ -7,13 +7,15 @@ module NotableWeb
     http_basic_authenticate_with name: ENV["NOTABLE_USERNAME"], password: ENV["NOTABLE_PASSWORD"] if ENV["NOTABLE_PASSWORD"]
 
     def index
-      where = params.slice(:status, :note_type, :note, :user_id, :user_type).permit!.to_h
+      @safe_params = params.slice(:status, :note_type, :note, :user_id, :user_type, :action_name, :status, :scope).permit!.to_h
+
+      where = @safe_params.slice(:status, :note_type, :note, :user_id, :user_type)
       where = {notable_requests: where} if where.any?
 
       page_method_name = Kaminari.config.page_method_name
 
       # https://github.com/rails/rails/issues/9055
-      @requests = Notable::Request.order("notable_requests.id DESC").where(where).preload(:user).public_send(page_method_name, params[:page]).per(100)
+      @requests = Notable::Request.order("notable_requests.id DESC").where(where).preload(:user).public_send(page_method_name, params[:page]).per(2)
 
       if params[:action_name]
         @requests = @requests.where(action: params[:action_name])

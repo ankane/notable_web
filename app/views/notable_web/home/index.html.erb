@@ -14,7 +14,7 @@
         <tr>
           <td>
             <%= agg.note %> <span style="color: #999;"><%= agg.action %></span>
-            <%= link_to "view", params.merge(note: agg.note, action_name: agg.action) %>
+            <%= link_to "view", @safe_params.merge(note: agg.note, action_name: agg.action) %>
           </td>
           <td style="text-align: right;"><%= agg.count_user %></td>
           <td style="text-align: right;"><%= agg.count_all %></td>
@@ -31,8 +31,8 @@
 <%= render partial: "stream", locals: {requests: @requests, show_user: !(params[:user_id] && params[:user_type])} %>
 
 <% if @requests.current_page != 1 %>
-  <%= link_to "Prev", params.merge(page: @requests.current_page - 1), style: "margin-right: 20px;" %>
+  <%= link_to "Prev", @safe_params.merge(page: @requests.current_page - 1), style: "margin-right: 20px;" %>
 <% end %>
 <% if @requests.size == @requests.limit_value %>
-  <%= link_to "Next", params.merge(page: @requests.current_page + 1) %>
+  <%= link_to "Next", @safe_params.merge(page: @requests.current_page + 1) %>
 <% end %>
