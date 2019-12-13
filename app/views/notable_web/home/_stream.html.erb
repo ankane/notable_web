@@ -11,7 +11,7 @@
         <%= request.note %>
         <span style="color: #999;"><%= request.action %></span>
         <% if request.user and show_user %>
-          <%= link_to NotableWeb.user_name_method.call(request.user), params.slice(:status, :note_type, :scope).merge(user_id: request.user_id, user_type: request.user_type) %>
+          <%= link_to NotableWeb.user_name_method.call(request.user), safe_params.slice(:status, :note_type, :scope).merge(user_id: request.user_id, user_type: request.user_type) %>
         <% end %>
         <% if params[:scope] == "referrer" %>
           <br /><%= link_to nil, request.referrer, target: "_blank" %>

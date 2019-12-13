@@ -1,3 +1,7 @@
+## 0.1.2 (unreleased)
+
+- Fixed error with Rails 6
+
 ## 0.1.1 (2019-10-27)
 
 - Added support for Sprockets 4

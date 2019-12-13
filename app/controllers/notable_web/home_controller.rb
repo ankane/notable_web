@@ -7,9 +7,7 @@ module NotableWeb
     http_basic_authenticate_with name: ENV["NOTABLE_USERNAME"], password: ENV["NOTABLE_PASSWORD"] if ENV["NOTABLE_PASSWORD"]
 
     def index
-      @safe_params = params.slice(:status, :note_type, :note, :user_id, :user_type, :action_name, :status, :scope).permit!.to_h
-
-      where = @safe_params.slice(:status, :note_type, :note, :user_id, :user_type)
+      where = safe_params.slice(:status, :note_type, :note, :user_id, :user_type)
       where = {notable_requests: where} if where.any?
 
       page_method_name = Kaminari.config.page_method_name
@@ -71,5 +69,9 @@ module NotableWeb
       Notable::Request.where("action IS NOT NULL AND (status = 503 OR note_type = 'Slow Request')")
     end
 
+    def safe_params
+      params.slice(:status, :note_type, :note, :user_id, :user_type, :action_name, :status, :scope).permit!.to_h
+    end
+    helper_method :safe_params
   end
 end
