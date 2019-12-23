@@ -1,4 +1,4 @@
-## 0.1.2 (unreleased)
+## 0.1.2 (2019-12-23)
 
 - Fixed error with Rails 6
 
