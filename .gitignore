@@ -6,9 +6,11 @@
 /doc/
 /pkg/
 /spec/reports/
+/test/internal/tmp/
 /tmp/
 *.bundle
 *.so
 *.o
 *.a
-mkmf.log
+*.log
+*.sqlite
