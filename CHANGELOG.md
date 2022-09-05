@@ -1,3 +1,7 @@
+## 0.2.0 (unreleased)
+
+- Dropped support for Ruby < 2.7 and Rails < 6
+
 ## 0.1.2 (2019-12-23)
 
 - Fixed error with Rails 6
